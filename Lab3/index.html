@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #3B5998;
+            padding: 20px;
+        }
+        .header img.left-image {
+            width: 350px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .header img.right-image {
+            width: 300px;
+            height: 49px;
+            object-fit: cover;
+        }
+        .menu {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            background-color: #3B5998;
+            border-radius: 5px;
+        }
+        .menu a:hover {
+            background-color: #2a4373;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .left-column {
+            flex: 0.5;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .search-box {
+            border: 2px dashed #3B5998;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .search-box textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+        }
+        .search-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .search-controls button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .search-controls button.go-button {
+            background-color: #3B5998;
+            color: white;
+        }
+        .links-box {
+            border: 2px dashed #3B5998;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .links-box a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .links-box a:hover {
+            text-decoration: underline;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .profile-header {
+            background-color: #3B5998;
+            color: white;
+            padding: 10px;
+        }
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .specific-table tr:first-child td {
+            background-color: #3B5998;
+            color: white;
+        }
+        .nested-tables {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .nested-tables table {
+            border-collapse: collapse;
+            border: none;
+            background-color: transparent;
+            color: black;
+        }
+        .nested-tables th {
+            font-weight: bold;
+            background-color: #3B5998;
+            color: white;
+        }
+        .nested-tables td {
+            border: none;
+        }
+        .parent-table td {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="./images/logo-left.jpg" alt="Left Image" class="left-image">
+        <div>
+            <img src="./images/logo-right.jpg" alt="Right Image" class="right-image">
+            <div class="menu">
+                <a href="#">home</a>
+                <a href="#">search</a>
+                <a href="#">global</a>
+                <a href="#">social net</a>
+                <a href="#">invite</a>
+                <a href="#">faq</a>
+                <a href="#">logout</a>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="left-column">
+            <div class="search-box">
+                <textarea placeholder="Type your search here..."></textarea>
+                <div class="search-controls">
+                    <button>Quick Search</button>
+                    <button class="go-button">Go</button>
+                </div>
+            </div>
+            <div class="links-box">
+                <a href="index.html">My Profile</a>
+                <a href="index.html">My groups</a>
+                <a href="index.html">My friends</a>
+                <a href="index.html">My messeges</a>
+                <a href="index.html">My away messeges</a>
+                <a href="index.html">My mobile info</a>
+                <a href="index.html">My acount </a>
+                <a href="index.html">My privacy</a>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="table-container">
+                <table class="parent-table">
+                    <tr>
+                        <td colspan="2" class="profile-header">
+                            Scott Pearson's profile (This is you) - Scranton
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="nested-tables">
+                                <table class="specific-table">
+                                    <tr><td><Picture></Picture></td></tr>
+                                    <tr><td><img src="./images/1234.png" alt="Profile Image"></td></
+                                </table>
+                                <table class="specific-table">
+                                    <tr><td>Visua=laze my friends</td></tr>
+                                    <tr><td>Edit my profile</td></tr>
+                                    <tr><td>My prefences</td></tr>
+                                    <tr><td>My privacy prefences</td></tr>
+                    
+                                </table>
+                                <table class="specific-table">
+                                    <tr><td>Contact info</td></tr>
+                                    <tr><td>Contactable via alumni@scranton.edu.</td></tr>
+                                    <tr><td>Screenname: ScottP7 for online interactions.</td></tr>
+                                </table>
+                                <table class="specific-table">
+                                    <tr><td>About me</td></tr>
+                                    <tr><td>Single and open to friendship opportunities.</td></tr>
+                                    <tr><td>Resides in Scranton, PA.</td></tr>
+                                </table>
+                                <table class="specific-table">
+                                    <tr><td>Summary 1</td></tr>
+            <tr><td>Passionate about football, basketball, and tennis.</td></tr>
+            <tr><td>Enjoys occasional social drinking with friends.</td></tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="nested-tables">
+                                <table class="specific-table">
+                                    <tr><td>General Info</td></tr>
+                                    <tr>
+                                        <td>
+                                            <div class="nested-tables">
+                                                <table>
+                                                    <tr><th colspan="2">Contact Info</th></tr>
+                                                    <tr><td>Name</td><td>Scott Pearson, '85</td></tr>
+                                                    <tr><td>Since</td><td>January 12, 2005</td></tr>
+                                                    <tr><td>Last Updated</td><td>February 7, 2005</td></tr>
+                                                    <tr><td>Basic Info</td><td>persson@scranton.edu</td></tr>
+                                                    <tr><td>Email</td><td>alumni@scranton.edu</td></tr>
+                                                    <tr><td>Year</td><td>2004</td></tr>
+                                                    <tr><td>Concentration</td><td>Computing Sciences</td></tr>
+                                                </table>
+                                                <table>
+                                                    <tr><th colspan="2">Extended Info</th></tr>
+                                                    <tr><td>Extended Info</td><td>570-489-18</td></tr>
+                                                    <tr><td>Screenname</td><td>ScottP7</td></tr>
+                                                    <tr><td>Looking For</td><td>Friendship</td></tr>
+                                                    <tr><td>Relationship Status</td><td>Single</td></tr>
+                                                    <tr><td>Interests</td><td>A relationship can get Random play football, basketball, drinking, you have baseball, tennis</td></tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

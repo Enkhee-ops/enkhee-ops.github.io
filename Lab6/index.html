@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube.com Clone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/extented_sidebar.css" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/video.css" />
+    <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/Header_bottom.css" />
+    
+  </head>
+  <body>
+    <header class="header">
+      <div class="left-section">
+        <img
+          class="hamburger-menu"
+          onmouseover="this.style.backgroundColor='rgb(192,192,192)'"
+          onmouseout="this.style.backgroundColor='white'"
+          src="icons/hamburger-menu.png"
+        />
+        <img class="youtube-logo" src="icons/youtube-logo.svg" />
+      </div>
+      <div class="middle-section">
+        <input class="search-bar" type="text" placeholder="Search" />
+        <button class="search-button">
+          <img class="search-icon" src="icons/search.png" />
+          <div class="tooltip">Search</div>
+        </button>
+        <button class="voice-search-button">
+          <img class="voice-search-icon" src="icons/voice.png" />
+          <div class="tooltip">Search with your voice</div>
+        </button>
+      </div>
+      <div class="right-section">
+        <img class="Create-icon" src="icons/Create.png" />
+        <div class="notifications-icon-container">
+          <img class="notifications-icon" src="icons/notification.png" />
+        </div>
+        <img class="current-user-picture" src="channels4_profile.jpg" />
+      </div>
+    </header>
+
+    <nav class="sidebar">
+      <div class="sidebar-link">
+        <img src="icons/home.png" />
+        <div>Home</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/short.png" />
+        <div>Short</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/subscriptions.png" />
+        <div>Subscriptions</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/You.png" />
+        <div>You</div>
+      </div>
+    </nav>
+    <div class="Header_bottom">
+      <div style="background-color: black; color: white">All</div>
+      <button>Gaming</button>
+      <div>Podcasts</div>
+      <div>Wild Boars</div>
+      <div>Live</div>
+      <div>Life simulated Games</div>
+      <div>Baseball</div>
+      <div>Music</div>
+      <div>Cricket</div>
+      <div>Comedy</div>
+      <div>Movies & Shows</div>
+      <div>News</div>
+      <div>Learning</div>
+      <div>Sports</div>
+      <div>Ai</div>
+      <div>Recently uploaded</div>
+      <div>Watched</div>
+      <div>New to you</div>
+      <div>Animated films</div>
+      <div>Run of thing to write</div>
+      <div>Thing</div>
+      <div>Thing1</div>
+      <div>Thing2</div>
+      <div>Thing3</div>
+      <div>Thing4</div>
+      <div>Thing5</div>
+    </div>
+
+    <!--extented_sidebar -->
+
+    <!-- Sidebar -->
+    <nav class="sidebar1" id="sidebar1">
+      <div> Home</div>
+      <div> Trending</div>
+      <div> Subscriptions</div>
+      <hr />
+            <h4 style="padding: 0 24px; font-size: 13px; margin: 8px 0">
+        You >
+      </h4>
+      <div>Library</div>
+      <div> History</div>
+      <div> Watch Later</div>
+      <div> Liked Videos</div>
+
+      <hr />
+      <h4 style="padding: 0 24px; font-size: 13px; margin: 8px 0">
+        SUBSCRIPTIONS >
+      </h4>
+      <div> MrBeast</div>
+      <div> PewDiePie</div>
+      <div>Markiplier</div>
+      <div> Jacksepticeye</div>
+      <div> Dream</div>
+      <div>Technoblade</div>
+      <div> TommyInnit</div>
+      <div> Cody Ko</div>
+      <div> Dude Perfect</div>
+      <div> Veritasium</div>
+      <div> Vsauce</div>
+      <div>Kurzgesagt</div>
+            <div> MrBeast</div>
+      <div> PewDiePie</div>
+      <div>Markiplier</div>
+      <div> Jacksepticeye</div>
+      <div> Dream</div>
+      <div>Technoblade</div>
+      <div> TommyInnit</div>
+      <div> Cody Ko</div>
+      <div> Dude Perfect</div>
+      <div> Veritasium</div>
+      <div> Vsauce</div>
+      <div>Kurzgesagt</div>
+
+    </nav>
+  
+
+    <main>
+      <section class="video-grid">
+        <div class="feed-back">
+          <div class="video-preview">
+            <div class="thumbnail-row">
+              <img class="thumbnail" src="hqdefault.avif" />
+              <div class="video-time">99:99</div>
+            </div>
+            <div class="video-info-grid">
+              <div class="channel-picture">
+                <img class="profile-picture" src="channels4_profile.jpg" />
+              </div>
+              <div class="video-info">
+                <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+                <p class="video-author">MrBeast</p>
+                <p class="video-stats">48M views &#183; 6 months ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">
+                Anything You Can Fit In The Circle I’ll Pay For
+              </p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="hqdefault.avif" />
+            <div class="video-time">99:99</div>
+          </div>
+          <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="channels4_profile.jpg" />
+            </div>
+            <div class="video-info">
+              <p class="video-title">100 People Vs World’s Biggest Trap!</p>
+              <p class="video-author">MrBeast</p>
+              <p class="video-stats">48M views &#183; 1 week ago</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

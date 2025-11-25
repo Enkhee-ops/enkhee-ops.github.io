@@ -1,0 +1,26 @@
+
+
+
+  .sidebar1 {
+    background-color: #fff;
+    color: #000;
+  position: fixed;
+  top: 56px;
+  left: 0px;                    /* hidden by default */
+  width: 240px;
+  height: calc(100vh - 56px);      /* full height minus header */
+  padding: 12px 0;        
+
+  transition: left 0.3s ease;
+  z-index: 999;
+  border-right: 1px solid var(--yt-border);
+  scrollbar-width: thin;          
+  scrollbar-color: #555 #fff;    
+}
+.sidebar1 div {
+    padding: 12px 24px;
+    font-size: 14px;
+    cursor: pointer;    
+}
+
+

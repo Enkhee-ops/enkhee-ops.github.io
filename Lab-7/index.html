@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Даалгавар 5 - JavaScript</title>
+    <script>
+
+        var number = window.prompt("1. Тоо оруулна уу:", "0");
+        var n = parseInt(number);
+        
+        var digitSum = 0;                
+
+        while (n > 0) {
+            digitSum = digitSum + (n % 10);
+            n = Math.floor(n / 10);
+        }
+
+        var sumStr = digitSum.toString();
+        var reversedStr = sumStr.split('').reverse().join('');
+        var isPalindrome = (sumStr == reversedStr);
+
+        document.writeln("<h2>1. Цифрүүдийн нийлбэр: " + digitSum + "</h2>");
+        document.writeln("<p><strong>ПАЛИНДРОМ " + (isPalindrome ? "МӨН" : "БИШ") + "</strong></p><hr>");
+
+        // ================================
+
+        var distanceStr = window.prompt("2. Туулайн өмнөх зай (км):", "0");
+        var distance = parseFloat(distanceStr);
+
+        var relativeSpeed = 25 - 18;      
+        var hours = distance / relativeSpeed;
+        var totalMinutes = hours * 60;
+        var minutes = Math.floor(totalMinutes);
+        var seconds = Math.round((totalMinutes - minutes) * 60);
+
+        document.writeln("<h2>2. Чоно туулайг гүйцэхэд:</h2>");
+        document.writeln("<p><strong>" + minutes + " минут " + seconds + " секунд</strong></p><hr>");
+
+        // ================================
+        var apartmentStr = window.prompt("3. Айлын дугаар оруулна уу:", "1");
+        var apartment = parseInt(apartmentStr);
+
+        var apartmentsPerEntrance = 9 * 4;  
+        var entrance = Math.ceil(apartment / apartmentsPerEntrance);
+
+        var inEntrance = apartment - (entrance - 1) * apartmentsPerEntrance;
+        var floor = Math.ceil(inEntrance / 4);
+        var door = inEntrance - (floor - 1) * 4;
+
+        document.writeln("<h2>3. Байрны байршил:</h2>");
+        document.writeln("<p><strong>" + entrance + "-р орц, " + floor + "-р давхар, " + door + "-р хаалга</strong></p><hr>");
+
+        // ================================
+
+        var input = window.prompt("4. 5 тоог таслалаар оруул (жишээ: 12,18,24,30,42):", "12,18,24,30,42");
+        var numbers = input.split(',').map(function(x) { return parseInt(x.trim()); });
+
+        function gcd(a, b) {
+            while (b) {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function lcm(a, b) {
+            return (a * b) / gcd(a, b);
+        }
+
+        var resultLCM = numbers[0];
+        var i = 1;
+        while (i < numbers.length) {
+            resultLCM = lcm(resultLCM, numbers[i]);
+            i = i + 1;
+        }
+
+        document.writeln("<h2>4. Хамгийн бага ерөнхий хуваагдагч (ХБЕХ):</h2>");
+        document.writeln("<p><strong>" + resultLCM + "</strong></p>");
+        document.writeln("<small>Оруулсан тоонууд: " + numbers.join(", ") + "</small><hr>");
+
+        // ================================
+
+        var numStr = window.prompt("5. Тоо оруулна уу:", "0");
+        var num = parseFloat(numStr);
+
+        var now = new Date();
+        var hour = now.getHours();
+        var isDayTime = (hour >= 6 && hour < 18);
+
+        document.writeln("<h2>5. Цаг харсан тооцоолол:</h2>");
+        document.writeln("<p>Одоо цаг: <strong>" + hour + ":" + 
+             + now.getMinutes() + "</strong></p>");
+
+        if (isDayTime) {
+            document.writeln("<p>Өдөр байна → <strong>" + num + "² = " + (num * num) + "</strong></p>");
+        } else {
+            document.writeln("<p>шөнө байна → <strong>√" + num + " ≈ " + 
+                Math.sqrt(num).toFixed(4) + "</strong></p>");
+        }
+
+
+ 
+    </script>
+</head>
+<body>
+</body>
+</html>

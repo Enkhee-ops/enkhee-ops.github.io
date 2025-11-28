@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://enkhee-ops.github.io/Lab6./sitemap.xml

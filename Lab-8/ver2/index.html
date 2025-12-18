@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хаагдах хүн тоглоом - Hangman Game</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Replace the Font Awesome link with this: -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+</head>
+<body>
+ <!-- Remove all existing audio elements and replace with these 5 simple ones -->
+<audio id="correctSound" src="https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="https://assets.mixkit.co/active_storage/sfx/946/946-preview.mp3" preload="auto"></audio>
+<audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/2015/2015-preview.mp3" preload="auto"></audio>
+<audio id="loseSound" src="https://assets.mixkit.co/active_storage/sfx/471/471-preview.mp3" preload="auto"></audio>
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/1109/1109-preview.mp3" preload="auto"></audio>
+
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Main Menu Screen -->
+        <div id="mainMenu" class="screen active">
+            <div class="header">
+                <h1><i class="fas fa-gamepad"></i> ХААГДАХ ХҮН ТОГЛООМ</h1>
+                <p>Үсгийн байрлал таах тоглоом</p>
+            </div>
+            
+            <div class="menu-content">
+                <div class="input-group">
+                    <label for="username"><i class="fas fa-user"></i> Тоглогчийн нэр:</label>
+                    <input type="text" id="username" placeholder="Нэрээ оруулна уу..." maxlength="20">
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                
+                <div class="menu-section">
+                    <h2><i class="fas fa-flag"></i> Тоглох горим</h2>
+                    <div class="button-group">
+                        <button class="mode-btn active" data-mode="standard">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Энгийн горим</span>
+                            <small>Ганц шат</small>
+                        </button>
+                        <button class="mode-btn" data-mode="infinite">
+                            <i class="fas fa-infinity"></i>
+                            <span>Төгсгөлгүй горим</span>
+                            <small>Үхэх хүртэл</small>
+                        </button>
+                        <button class="mode-btn" data-mode="timed">
+                            <i class="fas fa-clock"></i>
+                            <span>Цагтай горим</span>
+                            <small>Хурдан тоглох</small>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="menu-section">
+                    <h2><i class="fas fa-folder"></i> Сэдэв сонгох</h2>
+                    <div class="button-group">
+                        <button class="category-btn active" data-category="animals">
+                            <i class="fas fa-paw"></i>
+                            <span>Амьтад</span>
+                        </button>
+                        <button class="category-btn" data-category="vehicles">
+                            <i class="fas fa-car"></i>
+                            <span>Тээврийн хэрэгсэл</span>
+                        </button>
+                        <button class="category-btn" data-category="geography">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>Газар зүй</span>
+                        </button>
+                        <button class="category-btn" data-category="general">
+                            <i class="fas fa-brain"></i>
+                            <span>Ерөнхий мэдлэг</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="menu-actions">
+                    <button id="viewLeaderboardBtn" class="secondary-btn">
+                        <i class="fas fa-trophy"></i> Онооны самбар
+                    </button>
+                    <button id="howToPlayBtn" class="secondary-btn">
+                        <i class="fas fa-question-circle"></i> Тоглох заавар
+                    </button>
+                    <button id="startGameBtn" class="primary-btn">
+                        <i class="fas fa-play"></i> Тоглоом эхлүүлэх
+                    </button>
+                </div>
+                
+                <div class="game-info">
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Амь: <strong>6</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Хэцүү байдал нэмэгдэнэ</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Тусгай чадварууд байна</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="player-info">
+                    <span id="currentPlayer">Тоглогч: </span>
+                    <span id="currentCategory">Сэдэв: </span>
+                </div>
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Шат: <strong id="currentLevel">1</strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Амь: <strong id="remainingLives">6</strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>Оноо: <strong id="currentScore">0</strong></span>
+                    </div>
+                    <div class="stat-item timer-container">
+                        <i class="fas fa-clock"></i>
+                        <span>Цаг: <strong id="gameTimer">00:00</strong></span>
+                    </div>
+                </div>
+                <button id="pauseBtn" class="icon-btn">
+                    <i class="fas fa-pause"></i>
+                </button>
+            </div>
+            
+            <div class="game-content">
+                <div class="left-panel">
+                    <div class="hangman-container">
+                        <div class="hangman-stage">
+                            <div class="gallows"></div>
+                            <div class="hangman-drawing">
+                                <!-- Hangman parts will be drawn here -->
+                                <div class="hangman-part head" style="display: none;"></div>
+                                <div class="hangman-part body" style="display: none;"></div>
+                                <div class="hangman-part left-arm" style="display: none;"></div>
+                                <div class="hangman-part right-arm" style="display: none;"></div>
+                                <div class="hangman-part left-leg" style="display: none;"></div>
+                                <div class="hangman-part right-leg" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="hangman-status">
+                            <div class="status-text" id="hangmanStatus">Амь: 6</div>
+                        </div>
+                    </div>
+                    
+                    <div class="power-ups">
+                        <h3><i class="fas fa-bolt"></i> Тусгай чадварууд</h3>
+                        <div class="powerup-grid">
+                            <button class="powerup-btn" data-powerup="reveal" data-cost="100">
+                                <i class="fas fa-eye"></i>
+                                <span>Үсэг илрүүлэх</span>
+                                <small>100 оноо</small>
+                            </button>
+                            <button class="powerup-btn" data-powerup="life" data-cost="100">
+                                <i class="fas fa-heart"></i>
+                                <span>Нэмэлт амь</span>
+                                <small>100 оноо</small>
+                            </button>
+                            <button class="powerup-btn" data-powerup="freeze" data-cost="75">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Цаг зогсоох</span>
+                                <small>75 оноо</small>
+                            </button>
+                            <button class="powerup-btn" data-powerup="double" data-cost="150">
+                                <i class="fas fa-star"></i>
+                                <span>Давхар оноо</span>
+                                <small>150 оноо</small>
+                            </button>
+                            <button class="powerup-btn" data-powerup="skip" data-cost="200">
+                                <i class="fas fa-forward"></i>
+                                <span>Үг алгасах</span>
+                                <small>200 оноо</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="question-container">
+                        <div class="question-header">
+                            <i class="fas fa-question-circle"></i>
+                            <h3 id="questionText">Асуулт энд гарна</h3>
+                        </div>
+                        <p id="questionHint">Үгийн урт: <span id="wordLength">0</span> үсэг</p>
+                    </div>
+                    
+                    <div class="word-container">
+                        <h4>Үгийн байрлал:</h4>
+                        <div class="word-slots" id="wordSlots">
+                            <!-- Word slots will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="keyboard-container">
+                        <h4>Монгол цагаан толгой:</h4>
+                        <div class="alphabet-keyboard" id="alphabetKeyboard">
+                            <!-- Mongolian alphabet keys will be generated here -->
+                        </div>
+                        <div class="keyboard-actions">
+                            <button id="clearPositionBtn" class="action-btn">
+                                <i class="fas fa-eraser"></i> Байрлал цэвэрлэх
+                            </button>
+                            <button id="hintBtn" class="action-btn">
+                                <i class="fas fa-lightbulb"></i> Тусламж авах
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="nextLevelBtn" class="control-btn" style="display: none;">
+                            <i class="fas fa-forward"></i> Дараагийн шат
+                        </button>
+                        <button id="restartGameBtn" class="control-btn secondary">
+                            <i class="fas fa-redo"></i> Дахин эхлүүлэх
+                        </button>
+                        <button id="mainMenuBtn" class="control-btn secondary">
+                            <i class="fas fa-home"></i> Үндсэн цэс
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Level Complete Screen -->
+        <div id="levelCompleteScreen" class="screen popup-screen">
+            <div class="popup-content">
+
+
+        <button class="popup-close" onclick="closeLevelComplete()">
+            <i class="fas fa-times"></i>
+        </button>
+
+
+
+
+                <div class="popup-header success">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>ШАТ АМЖИЛТТАЙ!</h2>
+                </div>
+                <div class="popup-body">
+                    <div class="score-breakdown">
+                        <div class="score-item">
+                            <span>Үндсэн оноо:</span>
+                            <span id="baseScore">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Хурдны нэмэлт:</span>
+                            <span id="timeBonus">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Амьны нэмэлт:</span>
+                            <span id="lifeBonus">0</span>
+                        </div>
+                        <div class="score-item total">
+                            <span>Нийт оноо:</span>
+                            <span id="levelTotalScore">0</span>
+                        </div>
+                    </div>
+                    <div class="level-stats">
+                        <p>Та <strong id="completedLevel">1</strong> шатыг амжилттай давлаа!</p>
+                        <p>Үлдсэн амь: <strong id="remainingAfterLevel">6</strong></p>
+                    </div>
+                    <div class="next-word-info">
+                        <h4>Дараагийн үг:</h4>
+                        <p id="nextWordHint">Илүү хэцүү үг ирнэ</p>
+                    </div>
+                </div>
+                <div class="popup-actions">
+                    <button id="continueGameBtn" class="primary-btn">
+                        <i class="fas fa-play"></i> Үргэлжлүүлэх
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="screen popup-screen">
+
+
+
+
+
+            <div class="popup-content">
+                        <button class="popup-close" onclick="closeGameOver()">
+            <i class="fas fa-times"></i>
+        </button>
+                <div class="popup-header error">
+                    <i class="fas fa-times-circle"></i>
+                    <h2>ТОГЛООМ ДУУССАН!</h2>
+                </div>
+                <div class="popup-body">
+                    <div class="final-stats">
+                        <div class="final-stat">
+                            <i class="fas fa-layer-group"></i>
+                            <div>
+                                <span>Дамжсан шат</span>
+                                <h3 id="finalLevel">1</h3>
+                            </div>
+                        </div>
+                        <div class="final-stat">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span>Тоглосон хугацаа</span>
+                                <h3 id="finalTime">00:00</h3>
+                            </div>
+                        </div>
+                        <div class="final-stat">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <span>Нийт оноо</span>
+                                <h3 id="finalScore">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="final-word">
+                        <p>Зөв үг: <strong id="correctWord">ҮГ</strong></p>
+                        <p id="gameOverMessage">Дараа дахин оролдоно уу!</p>
+                    </div>
+                    <div class="achievements">
+                        <h4>Ололт амжилтууд:</h4>
+                        <div class="achievement-list" id="achievementList">
+                            <!-- Achievements will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-actions">
+                    <button id="playAgainBtn" class="primary-btn">
+                        <i class="fas fa-redo"></i> Дахин тоглох
+                    </button>
+                    <button id="gameOverMenuBtn" class="secondary-btn">
+                        <i class="fas fa-home"></i> Үндсэн цэс
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboardScreen" class="screen popup-screen">
+            <div class="popup-content">
+                        <button class="popup-close" onclick="closeLeaderboard()">
+            <i class="fas fa-times"></i>
+        </button>
+                <div class="popup-header">
+                    <i class="fas fa-trophy"></i>
+                    <h2>ОНООНЫ САМБАР</h2>
+                </div>
+                <div class="popup-body">
+                    <div class="leaderboard-filters">
+                        <button class="filter-btn active" data-filter="all">Бүгд</button>
+                        <button class="filter-btn" data-filter="standard">Энгийн</button>
+                        <button class="filter-btn" data-filter="infinite">Төгсгөлгүй</button>
+                        <button class="filter-btn" data-filter="timed">Цагтай</button>
+                    </div>
+                    <div class="leaderboard-table-container">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Байр</th>
+                                    <th>Тоглогч</th>
+                                    <th>Оноо</th>
+                                    <th>Шат</th>
+                                    <th>Хугацаа</th>
+                                    <th>Горим</th>
+                                    <th>Огноо</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardTable">
+                                <!-- Leaderboard entries will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="personal-best">
+                        <h4>Таны шилдэг амжилт:</h4>
+                        <div id="personalBest">-</div>
+                    </div>
+                </div>
+                <div class="popup-actions">
+                    <button id="closeLeaderboardBtn" class="primary-btn">
+                        <i class="fas fa-times"></i> Хаах
+                    </button>
+                    <button id="clearLeaderboardBtn" class="secondary-btn">
+                        <i class="fas fa-trash"></i> Самбар цэвэрлэх
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How to Play Screen -->
+        <div id="howToPlayScreen" class="screen popup-screen">
+            <div class="popup-content">
+                        <button class="popup-close" onclick="closeHowToPlay()">
+            <i class="fas fa-times"></i>
+        </button>
+                <div class="popup-header">
+                    <i class="fas fa-question-circle"></i>
+                    <h2>ТОГЛОХ ЗААВАР</h2>
+                </div>
+                <div class="popup-body">
+                    <div class="instructions">
+                        <div class="instruction-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Үсгийн байрлал таах</h4>
+                                <p>Та үсгийн байрлалыг нь таах ёстой. Эхлээд байрлалын дугаарыг сонгоод, дараа нь үсгээ сонгоно.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Амьны систем</h4>
+                                <p>Тоглоом 6 амьтай эхэлнэ. Буруу таамаглал бүр 1 амийг хорогдуулна. Амьнууд шатуудын хооронд сэргэдэггүй.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Оноо авах</h4>
+                                <p>Оноо нь хурд, үнэн зөв, үлдсэн амь зэргээс хамаарна. Илүү хурдан, үнэн зөв таамаглавал илүү өндөр оноо авах боломжтой.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Тусгай чадварууд</h4>
+                                <p>Тусгай чадваруудыг ашиглан тоглоомоо түргэсгэж болно. Үсэг илрүүлэх, нэмэлт амь авах, оноо давхарлах зэрэг олон төрлийн чадварууд байна.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Тоглох горимууд</h4>
+                                <ul>
+                                    <li><strong>Энгийн горим:</strong> Ганц шат тоглох</li>
+                                    <li><strong>Төгсгөлгүй горим:</strong> Амь дуустал тоглох</li>
+                                    <li><strong>Цагтай горим:</strong> Хугацааны дотор аль болох олон шат давах</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-actions">
+                    <button id="closeHowToPlayBtn" class="primary-btn">
+                        <i class="fas fa-check"></i> Ойлголоо
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pause Screen -->
+        <div id="pauseScreen" class="screen popup-screen">
+            <div class="popup-content">
+                        <button class="popup-close" onclick="resumeGameFromPause()">
+            <i class="fas fa-times"></i>
+        </button>
+                <div class="popup-header">
+                    <i class="fas fa-pause-circle"></i>
+                    <h2>ТОГЛООМ ЗОГСООЛОО</h2>
+                </div>
+                <div class="popup-body">
+                    <div class="pause-stats">
+                        <p>Тоглосон хугацаа: <strong id="pausedTime">00:00</strong></p>
+                        <p>Одоогийн шат: <strong id="pausedLevel">1</strong></p>
+                        <p>Оноо: <strong id="pausedScore">0</strong></p>
+                        <p>Үлдсэн амь: <strong id="pausedLives">6</strong></p>
+                    </div>
+                    <div class="pause-options">
+                        <p>Тоглоомоо үргэлжлүүлэх үү?</p>
+                    </div>
+                </div>
+                <div class="popup-actions">
+                    <button id="resumeGameBtn" class="primary-btn">
+                        <i class="fas fa-play"></i> Үргэлжлүүлэх
+                    </button>
+                    <button id="restartFromPauseBtn" class="secondary-btn">
+                        <i class="fas fa-redo"></i> Дахин эхлүүлэх
+                    </button>
+                    <button id="mainMenuFromPauseBtn" class="secondary-btn">
+                        <i class="fas fa-home"></i> Үндсэн цэс
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- At the end of your body tag -->
+     <script src="custom-questions.js"></script>
+<script src="data.js"></script>
+<script src="game.js"></script>
+<script src="leaderboard.js"></script>
+<script src="script.js"></script>
+
+    <script>
+    // Simple test to check if JS is working
+    console.log('Hangman Game loaded successfully!');
+    
+   
+</script>
+</body>
+</html>

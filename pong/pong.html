@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Pong</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="pongCanvas" width="800" height="600"></canvas>
+
+    <!-- Start Menu Overlay -->
+    <div id="menuOverlay" class="overlay">
+        <h1>PONG GAME</h1>
+        <p>Classic Pong</p>
+        <button onclick="startGame()">Play Mouse</button>
+        <div class="controls">
+            Mouse: Move Paddle | P: Pause | ESC: Menu<br>
+            First to 11 points wins!
+        </div>
+    </div>
+
+    <!-- Pause Overlay -->
+    <div id="pauseOverlay" class="overlay hidden">
+        <h2>PAUSED</h2>
+        <p>Press P to Resume</p>
+    </div>
+
+    <!-- Game Over Overlay -->
+    <div id="gameOverOverlay" class="overlay hidden">
+        <h2 id="winnerText">Player Wins!</h2>
+        <button onclick="restartGame()">Play Again (R)</button>
+        <button onclick="showMenu()">Main Menu (ESC)</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

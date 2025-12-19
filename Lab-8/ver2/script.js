@@ -337,26 +337,35 @@ function generateWord() {
 
 function getWordDatabase() {
     return {
-        animals: [
-            { word: 'БАР', question: 'Хүлэг морины өөр нэр?', hint: 'Уулын оройд амьдардаг' },
-            { word: 'НОХОЙ', question: 'Гэрийн тэжээвэр амьтан?', hint: 'Хашгирдаг' },
-            { word: 'МУУР', question: 'Сүүлтэй, сармагчин биш амьтан?', hint: 'Миёо гэж дуугардаг' }
+  animals: [
+    {  word: "ХАЛИМ", question: "Хамгийн том хөхтөн амьтан?", hint: "Далайд амьдардаг аварга биетэй" },
+    {  word: "МОРЬ",question: "Монголын үндэсний амьтан?", hint: "Нүүдэлчдийн үнэнч хүлэг" },
+    { word: "ЧОНО", question: "Шаргал өнгөтэй махчин амьтан?", hint: "Бүлгээрээ ан авдаг" },
+    {  word: "ТЭМЭЭ", question: "Цөлийн ус хадгалдаг амьтан?", hint: "Бөхтэй" },
         ],
-        vehicles: [
-            { word: 'МАШИН', question: 'Хамгийн түгээмэл тээврийн хэрэгсэл?', hint: 'Дөрвөн дугуйтай' },
-            { word: 'НИСЭХОНГОЦ', question: 'Агаараар нисдэг тээврийн хэрэгсэл?', hint: 'Дэлхийг тойрон нисдэг' }
+    vehicles: [
+    {  word: "АЭРОСТАТ",question: "Агаарын бөмбөлөг?", hint: "Хийтэй" },
+    {  word: "АСФАЛЬТДУГУЙ",question: "Замын ажилд ашигладаг?", hint: "Нягтруулна" },
+    {  word: "ВАГОН", question: "Төмөр замын буудал?", hint: "Суудалтай" },
+    {  word: "БУЛЬДОЗЕР",question: "Уул уурхайн машин?", hint: "Газар шороо" }
         ],
-        geography: [
-            { word: 'УЛААНБААТАР', question: 'Монгол улсын нийслэл?', hint: 'Туул голын эрэгт' },
-            { word: 'ГОБИ', question: 'Монголын алдарт цөл?', hint: 'Элсэн тал' }
-        ],
+       geography: [    
+    {  word: "ӨМНӨДАФРИК",question: "Африкийн хамгийн өмнөд улс?", hint: "Хоёр далайтай" },
+    {  word: "ВАШИНГТОН", question: "Америкийн нийслэл?", hint: "DC" },
+    {  word: "КАНБЕРРА", question: "Австралийн нийслэл?", hint: "Сидней биш" },
+    {  word: "РОМ", question: "Италийн нийслэл?", hint: "Эртний хот" },
+    {  word: "НОМХОН", question: "Дэлхийн хамгийн их далай?", hint: "Pacific" }
+  ],
+       
         general: [
-            { word: 'НОМ', question: 'Номын сангаас зээлдэг зүйл?', hint: 'Уншигдах зүйл' },
-            { word: 'КОМПЬЮТЕР', question: 'Оффисын хамгийн чухал техник?', hint: 'Цахим тал' }
+    {  word: "MONITOR",question: "Компьютерийн дэлгэц?", hint: "Display" },
+    {  word: "KEYBOARD",question: "Мэдээлэл оруулах төхөөрөмж?", hint: "Гар" },
+    {  word: "MOUSE", question: "Хулгана?", hint: "Заагч" },
+    {  word: "BROWSER", question: "Интернэт хөтөч?", hint: "Chrome" },
+    {  word: "INSTALL", question: "Програм суулгах?", hint: "Setup" }
         ]
     };
 }
-
 function updateGameUI() {
     
     document.getElementById('currentPlayer').textContent = `Тоглогч: ${playerName}`;
@@ -774,21 +783,11 @@ function showLevelComplete(levelScore) {
     
     SoundSystem.play('winSound');
 }
-
 function continueGame() {
-    
-    if (gameMode === 'standard' && currentLevel >= 1) {
-        
-        if (!confirm('Энгийн горимд дахин тоглох уу?')) {
-            showGameOver();
-            return;
-        }
-    }
-    
-    
+
     nextLevel();
     
-    
+
     document.getElementById('levelCompleteScreen').classList.remove('active');
 }
 

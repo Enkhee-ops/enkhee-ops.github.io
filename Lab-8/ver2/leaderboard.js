@@ -35,10 +35,10 @@ class Leaderboard {
 
         this.entries.push(entry);
         
-        // Sort by score (descending)
+
         this.entries.sort((a, b) => b.score - a.score);
         
-        // Keep only top 100 entries
+
         if (this.entries.length > 100) {
             this.entries = this.entries.slice(0, 100);
         }
@@ -69,7 +69,7 @@ class Leaderboard {
     }
 
     getUserRank(username) {
-        // Sort all entries by score
+
         const sorted = [...this.entries].sort((a, b) => b.score - a.score);
         const index = sorted.findIndex(entry => entry.username === username);
         return index !== -1 ? index + 1 : null;
@@ -128,6 +128,6 @@ class Leaderboard {
     }
 }
 
-// Create leaderboard instance
+
 const leaderboard = new Leaderboard();
 window.Leaderboard = leaderboard;

@@ -1,4 +1,4 @@
-// Custom Questions Database - Add your questions here!
+
 const CUSTOM_QUESTIONS = {
   animals: [
     { question: "Хамгийн том хөхтөн амьтан?", answer: "ХАЛИМ", hint: "Далайд амьдардаг аварга биетэй" },
@@ -127,7 +127,7 @@ const CUSTOM_QUESTIONS = {
   ]
 };
 
-// Function to get random question from category
+
 function getRandomQuestion(category) {
     const questions = CUSTOM_QUESTIONS[category] || CUSTOM_QUESTIONS.animals;
     if (questions.length === 0) {
@@ -136,7 +136,7 @@ function getRandomQuestion(category) {
     return questions[Math.floor(Math.random() * questions.length)];
 }
 
-// Export for use
+
 window.CustomQuestions = {
     CUSTOM_QUESTIONS,
     getRandomQuestion

@@ -1,11 +1,11 @@
-// Mongolian Cyrillic alphabet (excluding some rarely used letters)
+
 const MONGOLIAN_ALPHABET = [
     'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 
     'Н', 'О', 'Ө', 'П', 'Р', 'С', 'Т', 'У', 'Ү', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 
     'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'
 ];
 
-// Game questions and answers
+
 const QUESTION_CATEGORIES = {
     animals: [
         { 
@@ -117,7 +117,7 @@ const QUESTION_CATEGORIES = {
     ]
 };
 
-// Difficulty levels configuration
+
 const DIFFICULTY_LEVELS = {
     1: { basePoints: 100, timeBonus: 50, lifeBonus: 20, wordLength: 3 },
     2: { basePoints: 150, timeBonus: 75, lifeBonus: 25, wordLength: 4 },
@@ -131,7 +131,7 @@ const DIFFICULTY_LEVELS = {
     10: { basePoints: 550, timeBonus: 275, lifeBonus: 65, wordLength: 12 }
 };
 
-// For levels beyond 10, continue increasing difficulty
+
 function getDifficultyConfig(level) {
     if (level <= 10) {
         return DIFFICULTY_LEVELS[level];
@@ -145,7 +145,7 @@ function getDifficultyConfig(level) {
     }
 }
 
-// Power-ups configuration
+
 const POWER_UPS = {
     reveal: {
         name: "Үсэг илрүүлэх",
@@ -181,7 +181,7 @@ const POWER_UPS = {
 
 
 
-// Game modes
+
 const GAME_MODES = {
     standard: {
         name: "Энгийн горим",
@@ -200,11 +200,11 @@ const GAME_MODES = {
         description: "Хугацааны дотор аль болох олон шат давах",
         hasTimer: true,
         isInfinite: false,
-        timeLimit: 180 // 3 minutes in seconds
+        timeLimit: 180 
     }
 };
 
-// Export data
+
 window.GAME_DATA = {
     MONGOLIAN_ALPHABET,
     QUESTION_CATEGORIES,

@@ -1,4 +1,4 @@
-// Video data with local thumbnail paths
+
 const videos = [
   {
     id: 1,
@@ -134,7 +134,7 @@ const videos = [
   }
 ];
 
-// DOM Elements
+
 const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.getElementById('sidebar');
 const mainContent = document.getElementById('mainContent');
@@ -143,19 +143,19 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const categoryBar = document.getElementById('categoryBar');
 
-// State
+
 let sidebarExpanded = window.innerWidth >= 1280;
 let currentCategory = 'all';
 let searchQuery = '';
 
-// Initialize application
+
 function init() {
   updateSidebarState();
   renderVideos();
   setupEventListeners();
 }
 
-// Update sidebar visual state
+
 function updateSidebarState() {
   if (sidebarExpanded && window.innerWidth > 768) {
     sidebar.classList.add('expanded');
@@ -166,33 +166,26 @@ function updateSidebarState() {
   }
 }
 
-// Toggle sidebar expanded/collapsed
+
 function toggleSidebar() {
   sidebarExpanded = !sidebarExpanded;
   updateSidebarState();
 }
 
-// Render video cards
+
 function renderVideos() {
   let filteredVideos = [...videos];
 
-  /* Filter by search query
-  if (searchQuery.trim()) {
-    const query = searchQuery.toLowerCase().trim();
-    filteredVideos = filteredVideos.filter(video =>
-      video.title.toLowerCase().includes(query) ||
-      video.channel.toLowerCase().includes(query)
-    );
-  }*/
+ 
 
-  // Filter by category
+  
   if (currentCategory !== 'all') {
     filteredVideos = filteredVideos.filter(video => 
       video.category === currentCategory || video.category === 'all'
     );
   }
 
-  // Show no results message
+  
   if (filteredVideos.length === 0) {
     videoGrid.innerHTML = `
       <div class="no-results">
@@ -206,7 +199,7 @@ function renderVideos() {
     return;
   }
 
-  // Render video cards
+  
   videoGrid.innerHTML = filteredVideos.map(video => `
     <a href="#" class="video-card" data-id="${video.id}">
       <div class="thumbnail-container">
@@ -231,53 +224,42 @@ function renderVideos() {
   `).join('');
 }
 
-// Setup all event listeners
+
 function setupEventListeners() {
-  // Menu button click
+  
   menuBtn.addEventListener('click', toggleSidebar);
 
-  // Search button click
+  
   searchBtn.addEventListener('click', performSearch);
 
-  // Search input enter key
+  
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       performSearch();
     }
   });
 
-  // Category chip clicks
+  
   categoryBar.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (chip) {
-      // Update active state
+      
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       
-      // Update category and re-render
+      
       currentCategory = chip.dataset.category;
       renderVideos();
     }
   });
 
-  // Window resize handler
+  
   window.addEventListener('resize', handleResize);
 
-  // Video card clicks
-  /*videoGrid.addEventListener('click', (e) => {
-    const card = e.target.closest('.video-card');
-    if (card) {
-      e.preventDefault();
-      const videoId = card.dataset.id;
-      const video = videos.find(v => v.id === parseInt(videoId));
-      if (video) {
-        alert(`Now playing: ${video.title}\n\nChannel: ${video.channel}\nDuration: ${video.duration}`);
-      }
-    }
-  });
-*/
+  
+ 
 
-  // Sidebar item clicks
+  
   document.querySelectorAll('.sidebar-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
@@ -287,13 +269,13 @@ function setupEventListeners() {
   });
 }
 
-// Perform search
+
 function performSearch() {
   searchQuery = searchInput.value;
   renderVideos();
 }
 
-// Handle window resize
+
 function handleResize() {
   if (window.innerWidth >= 1280) {
     sidebarExpanded = true;
@@ -303,5 +285,5 @@ function handleResize() {
   updateSidebarState();
 }
 
-// Initialize when DOM is ready
+
 document.addEventListener('DOMContentLoaded', init);

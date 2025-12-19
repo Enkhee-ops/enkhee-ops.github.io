@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Хаагдах хүн тоглоом - Hangman Game</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Replace the Font Awesome link with this: -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
       integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />
 </head>
 <body>
- <!-- Remove all existing audio elements and replace with these 5 simple ones -->
+
 <audio id="correctSound" src="https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3" preload="auto"></audio>
 <audio id="wrongSound" src="https://assets.mixkit.co/active_storage/sfx/946/946-preview.mp3" preload="auto"></audio>
 <audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/2015/2015-preview.mp3" preload="auto"></audio>
@@ -20,9 +20,9 @@
 <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/1109/1109-preview.mp3" preload="auto"></audio>
 
     
-    <!-- Main Container -->
+
     <div class="container">
-        <!-- Main Menu Screen -->
+    
         <div id="mainMenu" class="screen active">
             <div class="header">
                 <h1><i class="fas fa-gamepad"></i> Hangman ТОГЛООМ</h1>
@@ -108,7 +108,7 @@
             </div>
         </div>
         
-        <!-- Game Screen -->
+ 
         <div id="gameScreen" class="screen">
             <div class="game-header">
                 <div class="player-info">
@@ -144,7 +144,7 @@
                         <div class="hangman-stage">
                             <div class="gallows"></div>
                             <div class="hangman-drawing">
-                                <!-- Hangman parts will be drawn here -->
+                              
                                 <div class="hangman-part head" style="display: none;"></div>
                                 <div class="hangman-part body" style="display: none;"></div>
                                 <div class="hangman-part left-arm" style="display: none;"></div>
@@ -202,14 +202,14 @@
                     <div class="word-container">
                         <h4>Үгийн байрлал:</h4>
                         <div class="word-slots" id="wordSlots">
-                            <!-- Word slots will be generated here -->
+              
                         </div>
                     </div>
                     
                     <div class="keyboard-container">
                         <h4>Монгол цагаан толгой:</h4>
                         <div class="alphabet-keyboard" id="alphabetKeyboard">
-                            <!-- Mongolian alphabet keys will be generated here -->
+                        
                         </div>
                         <div class="keyboard-actions">
                             <button id="clearPositionBtn" class="action-btn">
@@ -236,7 +236,7 @@
             </div>
         </div>
         
-        <!-- Level Complete Screen -->
+    
         <div id="levelCompleteScreen" class="screen popup-screen">
             <div class="popup-content">
 
@@ -288,7 +288,7 @@
             </div>
         </div>
         
-        <!-- Game Over Screen -->
+    
         <div id="gameOverScreen" class="screen popup-screen">
 
 
@@ -334,7 +334,7 @@
                     <div class="achievements">
                         <h4>Ололт амжилтууд:</h4>
                         <div class="achievement-list" id="achievementList">
-                            <!-- Achievements will be added here -->
+    
                         </div>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
 
 
 
-        <!-- Leaderboard Screen -->
+
         <div id="leaderboardScreen" class="screen popup-screen">
             <div class="popup-content">
                         <button class="popup-close" onclick="closeLeaderboard()">
@@ -386,7 +386,7 @@
                                 </tr>
                             </thead>
                             <tbody id="leaderboardTable">
-                                <!-- Leaderboard entries will be added here -->
+             
                             </tbody>
                         </table>
                     </div>
@@ -406,7 +406,7 @@
             </div>
         </div>
         
-        <!-- How to Play Screen -->
+
         <div id="howToPlayScreen" class="screen popup-screen">
             <div class="popup-content">
                         <button class="popup-close" onclick="closeHowToPlay()">
@@ -467,7 +467,7 @@
             </div>
         </div>
         
-        <!-- Pause Screen -->
+
         <div id="pauseScreen" class="screen popup-screen">
             <div class="popup-content">
                         <button class="popup-close" onclick="resumeGameFromPause()">
@@ -502,7 +502,7 @@
             </div>
         </div>
     </div>
-    <!-- At the end of your body tag -->
+ 
      <script src="custom-questions.js"></script>
 <script src="data.js"></script>
 <script src="game.js"></script>
@@ -510,7 +510,7 @@
 <script src="script.js"></script>
 
     <script>
-    // Simple test to check if JS is working
+   
     console.log('Hangman Game loaded successfully!');
     
    

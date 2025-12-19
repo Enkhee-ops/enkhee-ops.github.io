@@ -1,4 +1,4 @@
-/* Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -39,7 +39,7 @@ body {
     min-height: 90vh;
 }
 
-/* Screen Management */
+
 .screen {
     display: none;
     padding: 30px;
@@ -111,7 +111,7 @@ body {
     justify-content: center;
 }
 
-/* Main Menu Styles */
+
 .header {
     text-align: center;
     margin-bottom: 40px;
@@ -313,7 +313,7 @@ body {
     font-size: 1.5rem;
 }
 
-/* Game Screen Styles */
+
 .game-header {
     display: flex;
     justify-content: space-between;
@@ -402,7 +402,7 @@ body {
     gap: 30px;
 }
 
-/* Hangman Drawing */
+
 .hangman-container {
     background: var(--light-color);
     border-radius: 15px;
@@ -517,7 +517,7 @@ body {
     font-weight: 600;
 }
 
-/* Power-ups */
+
 .power-ups {
     background: var(--light-color);
     border-radius: 15px;
@@ -570,7 +570,7 @@ body {
     color: white;
 }
 
-/* Question and Word Display */
+
 .question-container {
     background: var(--light-color);
     border-radius: 15px;
@@ -675,7 +675,7 @@ body {
     box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
 }
 
-/* Keyboard */
+
 .keyboard-container {
     background: var(--light-color);
     border-radius: 15px;
@@ -794,7 +794,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* Score and Leaderboard Styles */
+
 .score-breakdown {
     background: var(--light-color);
     border-radius: 10px;
@@ -897,7 +897,7 @@ body {
     background: rgba(52, 152, 219, 0.1);
 }
 
-/* Instructions */
+
 .instructions {
     max-height: 400px;
     overflow-y: auto;
@@ -947,7 +947,7 @@ body {
     margin-top: 10px;
 }
 
-/* Pause Screen */
+
 .pause-stats {
     background: var(--light-color);
     border-radius: 10px;
@@ -960,7 +960,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Responsive Design */
+
 @media (max-width: 1200px) {
     .game-content {
         grid-template-columns: 1fr;
@@ -1048,7 +1048,7 @@ body {
     }
 }
 
-/* Animation Classes */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1095,7 +1095,7 @@ body {
 .hang-animation {
     animation: hang 0.5s ease-out;
 }
-/* Fixed Popup Management */
+
 .popup-screen {
     position: fixed;
     top: 0;
@@ -1138,7 +1138,7 @@ body {
     transform: rotate(90deg);
 }
 
-/* Exit buttons styling */
+
 .exit-btn {
     background: var(--danger-color);
     color: white;
@@ -1157,20 +1157,20 @@ body {
     transform: translateY(-2px);
 }
 
-/* Make sure game screen doesn't overlap */
+
 #gameScreen {
     position: relative;
     z-index: 1;
 }
 
-/* Ensure popups stay on top */
+
 #levelCompleteScreen { z-index: 1001; }
 #gameOverScreen { z-index: 1002; }
 #leaderboardScreen { z-index: 1003; }
 #howToPlayScreen { z-index: 1004; }
 #pauseScreen { z-index: 1005; }
 
-/* Close button for all popups */
+
 .popup-close {
     position: absolute;
     top: 15px;

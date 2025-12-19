@@ -1,7 +1,7 @@
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 
-// Game State
+
 let gameState = {
     playing: false,
     paused: false,
@@ -11,12 +11,12 @@ let gameState = {
     ball: { x: canvas.width / 2, y: canvas.height / 2, vx: 5, vy: 3, radius: 8 },
     paddlePlayer: { x: 20, y: canvas.height / 2 - 50, width: 12, height: 100, vy: 0 },
     paddleAI: { x: canvas.width - 32, y: canvas.height / 2 - 50, width: 12, height: 100, vy: 0 },
-    aiSpeed: 4, // Difficulty (easy-med-hard: 3,4,5)
+    aiSpeed: 4, 
     keys: {},
     mouseY: canvas.height / 2
 };
 
-// Audio Context for sounds
+
 let audioCtx;
 function initAudio() {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -34,7 +34,7 @@ function playSound(frequency, duration, type = 'sine') {
     oscillator.stop(audioCtx.currentTime + duration);
 }
 
-// Event Listeners
+
 window.addEventListener('keydown', (e) => {
     gameState.keys[e.key.toLowerCase()] = true;
     if (e.key === 'p' || e.key === 'P') togglePause();
@@ -54,7 +54,7 @@ canvas.addEventListener('click', () => {
     if (!gameState.playing) startGame();
 });
 
-// Game Functions
+
 function startGame() {
     gameState.playing = true;
     gameState.paused = false;
@@ -100,33 +100,33 @@ function resetBall() {
 function update() {
     if (!gameState.playing || gameState.paused) return;
 
-    // Player paddle (mouse priority)
+ 
     let targetY = gameState.mouseY - gameState.paddlePlayer.height / 2;
-    gameState.paddlePlayer.y += (targetY - gameState.paddlePlayer.y) * 0.2; // Smooth follow
+    gameState.paddlePlayer.y += (targetY - gameState.paddlePlayer.y) * 0.2; 
 
-    // Keyboard fallback
+
     if (gameState.keys['w'] || gameState.keys['arrowup']) gameState.paddlePlayer.y -= 6;
     if (gameState.keys['s'] || gameState.keys['arrowdown']) gameState.paddlePlayer.y += 6;
 
-    // Clamp paddles
+  
     gameState.paddlePlayer.y = Math.max(0, Math.min(canvas.height - gameState.paddlePlayer.height, gameState.paddlePlayer.y));
     gameState.paddleAI.y = Math.max(0, Math.min(canvas.height - gameState.paddleAI.height, gameState.paddleAI.y));
 
-    // AI paddle
+
     const aiTarget = gameState.ball.y - gameState.paddleAI.height / 2;
     gameState.paddleAI.y += (aiTarget - gameState.paddleAI.y) * 0.15;
 
-    // Ball movement
+ 
     gameState.ball.x += gameState.ball.vx;
     gameState.ball.y += gameState.ball.vy;
 
-    // Wall bounce
+  
     if (gameState.ball.y <= gameState.ball.radius || gameState.ball.y >= canvas.height - gameState.ball.radius) {
         gameState.ball.vy *= -1;
         playSound(400, 0.1);
     }
 
-    // Paddle collision
+
     if (collides(gameState.ball, gameState.paddlePlayer) || collides(gameState.ball, gameState.paddleAI)) {
         gameState.ball.vx *= -1;
         gameState.ball.vy += (gameState.ball.y - (collides(gameState.ball, gameState.paddlePlayer) ? gameState.paddlePlayer.y : gameState.paddleAI.y)) * 0.15;
@@ -135,7 +135,7 @@ function update() {
         gameState.ball.vy *= 1.05;
     }
 
-    // Score
+
     if (gameState.ball.x < 0) {
         gameState.scoreAI++;
         playSound(200, 0.3, 'sawtooth');
@@ -164,7 +164,7 @@ function draw() {
     ctx.shadowColor = '#00f';
     ctx.shadowBlur = 20;
 
-    // Center line
+
     ctx.strokeStyle = '#fff';
     ctx.lineWidth = 4;
     ctx.setLineDash([20, 20]);
@@ -174,26 +174,26 @@ function draw() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Paddles
+
     ctx.fillStyle = '#fff';
     ctx.shadowBlur = 15;
     ctx.fillRect(gameState.paddlePlayer.x, gameState.paddlePlayer.y, gameState.paddlePlayer.width, gameState.paddlePlayer.height);
     ctx.fillRect(gameState.paddleAI.x, gameState.paddleAI.y, gameState.paddleAI.width, gameState.paddleAI.height);
 
-    // Ball
+
     ctx.shadowBlur = 25;
     ctx.beginPath();
     ctx.arc(gameState.ball.x, gameState.ball.y, gameState.ball.radius, 0, Math.PI * 2);
     ctx.fill();
 
-    // Score
+
     ctx.shadowBlur = 0;
     ctx.font = 'bold 72px Courier New';
     ctx.textAlign = 'center';
     ctx.fillText(gameState.scorePlayer, canvas.width * 0.25, 90);
     ctx.fillText(gameState.scoreAI, canvas.width * 0.75, 90);
 
-    // Controls hint
+
     ctx.font = '20px Courier New';
     ctx.fillText('Mouse/W S | P Pause | ESC Menu', canvas.width / 2, 30);
 }
@@ -208,7 +208,7 @@ function hideAllOverlays() {
     document.querySelectorAll('.overlay').forEach(el => el.classList.add('hidden'));
 }
 
-// Init
+
 showMenu();
 window.addEventListener('load', () => {
     function resize() {

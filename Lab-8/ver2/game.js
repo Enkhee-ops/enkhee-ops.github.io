@@ -1,4 +1,4 @@
-// Game state management
+
 class HangmanGame {
     constructor() {
         this.resetGame();
@@ -39,7 +39,7 @@ class HangmanGame {
             const saved = localStorage.getItem('hangmanProgress');
             if (saved) {
                 const data = JSON.parse(saved);
-                // Only load certain persistent data
+
                 this.state.username = data.username || '';
 
             }
@@ -81,12 +81,12 @@ class HangmanGame {
             return;
         }
 
-        // Select random question
+   
         const randomIndex = Math.floor(Math.random() * categoryQuestions.length);
         this.state.currentQuestion = categoryQuestions[randomIndex];
         this.state.currentAnswer = this.state.currentQuestion.answer.toUpperCase();
         
-        // Reset level-specific state
+   
         this.state.revealedLetters = new Array(this.state.currentAnswer.length).fill(false);
         this.state.triedLetters = {};
         this.state.correctGuesses = 0;
@@ -94,7 +94,7 @@ class HangmanGame {
         this.state.selectedPosition = null;
         this.state.levelStartTime = Date.now();
         
-        // Initialize tried letters object for each position
+
         for (let i = 0; i < this.state.currentAnswer.length; i++) {
             this.state.triedLetters[i] = new Set();
         }
@@ -118,7 +118,7 @@ class HangmanGame {
 
         letter = letter.toUpperCase();
         
-        // Check if letter was already tried for this position
+
         if (this.state.triedLetters[pos].has(letter)) {
             return { success: false, message: 'Энэ үсгийг энэ байрлалд аль хэдийн туршсан байна' };
         }
@@ -126,15 +126,14 @@ class HangmanGame {
         this.state.totalGuesses++;
         this.state.triedLetters[pos].add(letter);
 
-        // Check if correct
         if (this.state.currentAnswer[pos] === letter) {
             this.state.correctGuesses++;
             this.state.revealedLetters[pos] = true;
             
-            // Calculate points
+
             const points = this.calculatePoints(true, pos);
             
-            // Check if level is complete
+
             const levelComplete = this.state.revealedLetters.every(revealed => revealed);
             
             return {
@@ -146,7 +145,7 @@ class HangmanGame {
                 levelComplete: levelComplete
             };
         } else {
-            // Wrong guess - lose a life
+
             this.state.lives--;
             
             return {
@@ -166,17 +165,17 @@ class HangmanGame {
         const difficulty = getDifficultyConfig(this.state.currentLevel);
         let points = difficulty.basePoints;
         
-        // Time bonus
+ 
         const timeTaken = (Date.now() - this.state.levelStartTime) / 1000;
-        const maxTime = 60; // 60 seconds for full time bonus
+        const maxTime = 60; 
         const timeFactor = Math.max(0, 1 - (timeTaken / maxTime));
         points += Math.round(difficulty.timeBonus * timeFactor);
         
-        // Life bonus
+
         const lifeFactor = this.state.lives / this.state.totalLives;
         points += Math.round(difficulty.lifeBonus * lifeFactor);
         
-        // Double points power-up
+  
         if (this.state.doublePointsActive) {
             points *= 2;
             this.state.doublePointsActive = false;
@@ -217,7 +216,7 @@ class HangmanGame {
                     result.revealedPosition = randomPos;
                     result.revealedLetter = letter;
                     
-                    // Check if level is complete
+    
                     result.levelComplete = this.state.revealedLetters.every(revealed => revealed);
                 }
                 break;
@@ -268,17 +267,17 @@ class HangmanGame {
         const difficulty = getDifficultyConfig(this.state.currentLevel);
         let score = difficulty.basePoints;
         
-        // Time bonus
+ 
         const timeTaken = (Date.now() - this.state.levelStartTime) / 1000;
         const maxTime = 60;
         const timeFactor = Math.max(0, 1 - (timeTaken / maxTime));
         score += Math.round(difficulty.timeBonus * timeFactor);
         
-        // Life bonus
+   
         const lifeFactor = this.state.lives / this.state.totalLives;
         score += Math.round(difficulty.lifeBonus * lifeFactor);
         
-        // Accuracy bonus
+    
         const accuracy = this.state.totalGuesses > 0 ? this.state.correctGuesses / this.state.totalGuesses : 1;
         score = Math.round(score * accuracy);
         
@@ -345,6 +344,6 @@ class HangmanGame {
     }
 }
 
-// Create game instance
+
 const game = new HangmanGame();
 window.HangmanGame = game;
